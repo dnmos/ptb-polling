@@ -3,6 +3,7 @@ import json
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
 from data import config, messages
+import tg_analytic
 
 
 logging.basicConfig(
@@ -29,6 +30,7 @@ def get_text_services(messages):
 
 
 async def command_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+  tg_analytic.statistics(update.message.chat.id, update.message.from_user.username, update.message.from_user.full_name, "start")
   await context.bot.send_message(chat_id=update.effective_chat.id, 
                                  text=messages.TEXT_START,  
                                  parse_mode="HTML", 
@@ -37,6 +39,7 @@ async def command_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def command_services(update: Update, context: ContextTypes.DEFAULT_TYPE):
   text_services = get_text_services(messages)
+  tg_analytic.statistics(update.message.chat.id, update.message.from_user.username, update.message.from_user.full_name, "services")
   await context.bot.send_message(chat_id=update.effective_chat.id, 
                                  text=text_services,  
                                  parse_mode="HTML", 
@@ -51,6 +54,7 @@ async def command_pdf(update: Update, context: ContextTypes.DEFAULT_TYPE):
     title = posts_params[post]['title']
     command = post.replace('-', '_')
     text_posts = text_posts + title + '\n' + f' /{command}\n\n' 
+  tg_analytic.statistics(update.message.chat.id, update.message.from_user.username, update.message.from_user.full_name, "pdf")
   await context.bot.send_message(chat_id=update.effective_chat.id, 
                                  text=text_posts,  
                                  parse_mode="HTML", 
@@ -69,6 +73,7 @@ async def command_other(update: Update, context: ContextTypes.DEFAULT_TYPE):
   for post in posts_params:
     command = post.replace('-', '_')
     if text == f"/{command}":
+      tg_analytic.statistics(update.message.chat.id, update.message.from_user.username, update.message.from_user.full_name, command)
       await context.bot.send_document(chat_id=update.effective_chat.id, 
                                       document=open(f"../webpdf/pdf/{post}.pdf", "rb"))
 

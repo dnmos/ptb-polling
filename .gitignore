@@ -2,4 +2,4 @@ __pycache__
 data/__pycache__
 env/
 .env
-posts_params.json
+data.csv
