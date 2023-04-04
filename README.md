@@ -3,10 +3,11 @@
 
 ## Table of contents
 
-- [[#General info]]
-- [[#Technologies]]
-- [[#Initial setup]]
-- [[#Relative links]]
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Initial setup](#initial-setup)
+- [Daemon setting](#daemon-setting)
+- [Relative links](#relative-links)
 
 
 ## General info
