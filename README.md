@@ -45,7 +45,7 @@ vim ./data/.env
 ## Daemon setting
 
 ```
-vim /etc/systemd/system/vibot.service
+sudo vim /etc/systemd/system/vibot.service
 ```
 
 ```
@@ -59,7 +59,7 @@ Group=www-data
 WorkingDirectory=/home/www/vi/bot
 Restart=on-failure
 RestartSec=2s
-ExecStart=/home/www/vi/bot/env/bin/python -m main.py
+ExecStart=/home/www/vi/bot/env/bin/python -m main
 
 [Install]
 WantedBy=multi-user.target
