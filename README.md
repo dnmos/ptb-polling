@@ -31,10 +31,14 @@ Clone repository
 git clone git@github.com:dnmos/ptb-polling.git
 ```
 
+```
+mv ptb-polling/ bot/
+```
+
 Fill token in .env
 
 ```
-vim ./env/.env
+vim ./data/.env
 ```
 
 
